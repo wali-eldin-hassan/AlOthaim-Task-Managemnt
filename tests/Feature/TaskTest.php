@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\TaskStatus;
+use App\Models\Task;
 use App\Models\User;
 use Database\Seeders\RoleAndPersmissionsSeeder;
 
@@ -30,16 +31,52 @@ it('can create task', function () {
     $this->assertDatabaseHas('tasks', $payload);
 });
 
-it('can update task', function () {});
+it('can update task', function () {
 
-it('can delete task', function () {});
+    $this->task = create(Task::class, ['assigned_to' => $this->admin->id]);
 
-it('can view task', function () {});
+    $payload = [
+        'title' => 'Task Title',
+    ];
 
-it('can view all tasks', function () {});
+    $this->put("/tasks/{$this->task->id}", $payload)
+        ->assertRedirect();
 
-it('can show only task that assigned to them', function () {});
+    $this->assertDatabaseHas('tasks', [
+        'title' => $payload['title'],
+    ]);
 
-it('can filter tasks by status', function () {});
+});
 
-it('can filter by assigned user', function () {});
+it('can delete task', function () {
+    $this->task = create(Task::class, ['assigned_to' => $this->admin->id]);
+
+    $this->delete("/tasks/{$this->task->id}")
+        ->assertRedirect();
+
+    $this->assertDatabaseMissing('tasks', ['id' => $this->task->id]);
+});
+
+it('can view task', function () {
+    $this->task = create(Task::class, ['assigned_to' => $this->admin->id]);
+
+    $this->get("/tasks/{$this->task->id}")
+        ->assertOk()
+        ->assertViewHas('task', function ($task) {
+            return $task->id === $this->task->id;
+        });
+});
+
+it('can show only task that assigned to them', function () {
+    $otherUser = create(User::class);
+
+    create(Task::class, ['assigned_to' => $otherUser->id]);
+
+    $this->task = create(Task::class, ['assigned_to' => $this->admin->id], 3);
+
+    $this->get('/tasks')
+        ->assertOk()
+        ->assertViewHas('tasks', function ($tasks) {
+            return $tasks->count() === 3;
+        });
+});

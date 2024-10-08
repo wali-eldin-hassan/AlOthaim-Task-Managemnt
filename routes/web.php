@@ -46,4 +46,7 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::resource('tasks', TaskController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('tasks', TaskController::class);
+
+});
