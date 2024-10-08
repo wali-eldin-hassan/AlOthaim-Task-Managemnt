@@ -16,18 +16,17 @@ class RoleAndPersmissionsSeeder extends Seeder
 
         $roles = [
             'admin' => ['create-task', 'view-task', 'edit-task', 'delete-task'],
-            'user' => ['view-task'],
+            'user' => ['view-task', 'edit-task'],
         ];
 
         foreach ($roles as $role => $permissions) {
-            Role::create(['name' => $role]);
-            foreach ($permissions as $permission) {
-                Permission::create(['name' => $permission]);
-                if ($role === 'admin') {
-                    Role::findByName($role)->syncPermissions(Permission::all());
-                }
-            }
+            $roleInstance = Role::firstOrCreate(['name' => $role]);
 
+            foreach ($permissions as $permission) {
+                $permissionInstance = Permission::firstOrCreate(['name' => $permission]);
+
+                $roleInstance->givePermissionTo($permissionInstance);
+            }
         }
     }
 }

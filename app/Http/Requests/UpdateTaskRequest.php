@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use TaskStatus;
 
 class UpdateTaskRequest extends FormRequest
 {
@@ -18,6 +18,7 @@ class UpdateTaskRequest extends FormRequest
         return [
             'title' => ['sometimes', 'string', 'max:255'],
             'description' => ['sometimes', 'string', 'max:65535'],
+            'assigned_to' => ['sometimes', Rule::exists('users', 'id')],
             'status' => ['sometimes', 'string', Rule::enum(TaskStatus::class)],
         ];
     }
