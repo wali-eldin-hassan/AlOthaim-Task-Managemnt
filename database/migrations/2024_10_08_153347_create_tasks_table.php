@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('status')->default(TaskStatus::Pending);
-            $table->foreignId('`assigned_to')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('assigned_to')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
