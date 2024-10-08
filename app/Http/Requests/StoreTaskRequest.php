@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use TaskStatus;
 
 class StoreTaskRequest extends FormRequest
 {
@@ -18,6 +18,7 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:65535'],
+            'assigned_to' => ['required', Rule::exists('users', 'id')],
             'status' => ['required', 'string', Rule::enum(TaskStatus::class)],
         ];
     }
