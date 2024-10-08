@@ -8,12 +8,17 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
+    //    function ()
+    //    {
+    //        $this->authorize('tasks', Task::class);
+    //    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('task.index');
+        return view('tasks.index');
     }
 
     /**
@@ -31,7 +36,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('task.create');
+        return view('tasks.create');
     }
 
     /**
@@ -39,7 +44,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view('task.show', ['task' => $task]);
+        return view('tasks.show', ['task' => $task]);
     }
 
     /**
@@ -47,7 +52,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('task.edit', ['task' => $task]);
+        return view('tasks.edit', ['task' => $task]);
     }
 
     /**
