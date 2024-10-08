@@ -3,17 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use TaskStatus;
 
 class UpdateTaskRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,7 +16,9 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['sometimes', 'string', 'max:255'],
+            'description' => ['sometimes', 'string', 'max:65535'],
+            'status' => ['sometimes', 'string', Rule::enum(TaskStatus::class)],
         ];
     }
 }
