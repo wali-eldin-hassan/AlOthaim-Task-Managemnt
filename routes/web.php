@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('language/{language}', function ($language) {
     Session()->put('locale', $language);
     App::setlocale($language);
+
     return back();
 })->name('language');
 
@@ -28,7 +30,6 @@ Route::get('/404', function () {
     return view('pages.404');
 })->name('404');
 
-
 Route::get('/profile', function () {
     return view('pages.profile');
 })->name('profile');
@@ -36,7 +37,6 @@ Route::get('/profile', function () {
 Route::get('/tasks', function () {
     return view('pages.tasks');
 })->name('tasks');
-
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -46,7 +46,4 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-
-
-
-
+Route::resource('tasks', TaskController::class);

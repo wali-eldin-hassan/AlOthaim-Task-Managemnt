@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use TaskStatus;
 
 class Task extends Model
 {
@@ -12,10 +13,10 @@ class Task extends Model
 
     protected $fillable = ['title', 'description', 'status'];
 
+    protected $casts = [
+        'status' => TaskStatus::class,
+    ];
 
-    /**
-     * @return BelongsTo
-     */
     public function user(): belongsTo
     {
         return $this->belongsTo(User::class, 'assigned_to');
