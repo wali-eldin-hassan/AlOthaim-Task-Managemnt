@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -22,31 +25,14 @@ Route::get('language/{language}', function ($language) {
     return back();
 })->name('language');
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-})->name('dashboard');
+// guest routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'login']);
+    Route::get('/register', [RegisterController::class, 'register']);
+});
 
-Route::get('/404', function () {
-    return view('pages.404');
-})->name('404');
-
-Route::get('/profile', function () {
-    return view('pages.profile');
-})->name('profile');
-
-Route::get('/tasks', function () {
-    return view('pages.tasks');
-})->name('tasks');
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
+//  auth routes
 Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
-
+    Route::get('/', DashBoardController::class);
 });
