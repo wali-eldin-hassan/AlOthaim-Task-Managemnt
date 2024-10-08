@@ -13,11 +13,11 @@ beforeEach(function () {
 
     $this->admin->assignRole('admin');
 
-    $this->actingAS($this->admin);
-
 });
 
 it('can create task', function () {
+    $this->actingAs($this->admin);
+
     $payload = [
         'title' => 'Task Title',
         'description' => 'Task Description',
@@ -32,6 +32,7 @@ it('can create task', function () {
 });
 
 it('can update task', function () {
+    $this->actingAs($this->admin);
 
     $this->task = create(Task::class, ['assigned_to' => $this->admin->id]);
 
@@ -49,6 +50,9 @@ it('can update task', function () {
 });
 
 it('can delete task', function () {
+
+    $this->actingAs($this->admin);
+
     $this->task = create(Task::class, ['assigned_to' => $this->admin->id]);
 
     $this->delete("/tasks/{$this->task->id}")
@@ -58,6 +62,9 @@ it('can delete task', function () {
 });
 
 it('can view task', function () {
+
+    $this->actingAs($this->admin);
+
     $this->task = create(Task::class, ['assigned_to' => $this->admin->id]);
 
     $this->get("/tasks/{$this->task->id}")
@@ -68,6 +75,9 @@ it('can view task', function () {
 });
 
 it('can show only task that assigned to them', function () {
+
+    $this->actingAs($this->admin);
+
     $otherUser = create(User::class);
 
     create(Task::class, ['assigned_to' => $otherUser->id]);
@@ -80,3 +90,17 @@ it('can show only task that assigned to them', function () {
             return $tasks->count() === 3;
         });
 });
+//todo:make this work also check the auth
+//it('unauthenticated user cannot perform tasks', function () {
+//    $user = create(User::class);
+//
+//    $payload = [
+//        'title' => 'Task Title',
+//        'description' => 'Task Description',
+//        'status' => TaskStatus::Pending->value,
+//        'assigned_to' => $user->id,
+//    ];
+//
+//    $this->post('/tasks', $payload)
+//        ->assertUnauthorized();
+//});
