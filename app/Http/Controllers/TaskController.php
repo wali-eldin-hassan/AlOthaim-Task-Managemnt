@@ -18,7 +18,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.index');
+        $tasks = auth()->user()->tasks();
+
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**
