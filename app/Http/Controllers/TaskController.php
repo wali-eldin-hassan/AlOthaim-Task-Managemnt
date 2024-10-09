@@ -5,16 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Models\User;
 use App\Notifications\TaskAssignedNotification;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    //    function ()
-    //    {
-    //        $this->authorize('tasks', Task::class);
-    //    }
-
     /**
      * Display a listing of the resource.
      */
@@ -25,14 +21,18 @@ class TaskController extends Controller
             : Task::query();
 
         $tasks->when($request->status, function ($query) use ($request) {
-            $query->where('status', $request->status);
+            return $query->where('status', $request->status);
+        });
+
+        $tasks->when($request->assigned_user, function ($query) use ($request) {
+            return $query->where('assigned_to', $request->assigned_user);
         });
 
         $tasks = auth()->user()->hasRole('user')
             ? $tasks->latest()->get()
             : $tasks->latest()->paginate(10);
 
-        return view('tasks.index', ['tasks' => $tasks]);
+        return view('tasks.index', ['tasks' => $tasks, 'users' => User::all()]);
     }
 
     /**

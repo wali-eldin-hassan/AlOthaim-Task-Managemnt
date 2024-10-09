@@ -15,26 +15,46 @@
             </a>
         </div>
         </div>
-        <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 justify-center">
-            <a href="{{ route('tasks.index')}}"
-               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == '' ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none">
-                <span class="mx-1 text-sm sm:text-base">{{__('All')}}</span>
-            </a>
-            <a href="{{ route('tasks.index', ['status' => TaskStatus::Pending]) }}"
-               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::Pending->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none">
-                <span class="mx-1 text-sm sm:text-base">{{__('Pending')}}</span>
-            </a>
+        <div class="flex items-center justify-between px-4 mx-auto">
+            <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 justify-center">
+                <a href="{{ route('tasks.index')}}"
+                   class="inline-flex items-center h-10 px-4 py-2 text-gray-700 bg-transparent border-b-2 {{ request('status') == '' ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none">
+                    <span class="mx-1 text-sm sm:text-base">{{__('All')}}</span>
+                </a>
+                <a href="{{ route('tasks.index', ['status' => TaskStatus::Pending]) }}"
+                   class="inline-flex items-center h-10 px-4 py-2 text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::Pending->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none">
+                    <span class="mx-1 text-sm sm:text-base">{{__('Pending')}}</span>
+                </a>
 
-            <a href="{{ route('tasks.index', ['status' => TaskStatus::InProgress]) }}"
-               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::InProgress->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:text-white whitespace-nowrap focus:outline-none">
-                <span class="mx-1 text-sm sm:text-base">{{__('In Progress')}}</span>
-            </a>
+                <a href="{{ route('tasks.index', ['status' => TaskStatus::InProgress]) }}"
+                   class="inline-flex items-center h-10 px-4 py-2 text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::InProgress->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:text-white whitespace-nowrap focus:outline-none">
+                    <span class="mx-1 text-sm sm:text-base">{{__('In Progress')}}</span>
+                </a>
 
-            <a href="{{ route('tasks.index', ['status' => TaskStatus::Completed]) }}"
-               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::Completed->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:text-white whitespace-nowrap focus:outline-none">
-                <span class="mx-1 text-sm sm:text-base">{{__('Completed')}}</span>
-            </a>
+                <a href="{{ route('tasks.index', ['status' => TaskStatus::Completed]) }}"
+                   class="inline-flex items-center h-10 px-4 py-2 text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::Completed->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:text-white whitespace-nowrap focus:outline-none">
+                    <span class="mx-1 text-sm sm:text-base">{{__('Completed')}}</span>
+                </a>
+
+            </div>
+            <form action="{{ route('tasks.index') }}" method="GET" class="">
+                <label for="assigned_user"
+                       class="text-sm text-gray-600 dark:text-gray-300">{{ __('Assigned User') }}</label>
+                <div class="flex items-center justify-center">
+
+                    <select name="assigned_user" id="assigned_user" class="border rounded">
+                        <option value="">{{ __('All Users') }}</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}" {{ request('assigned_user') == $user->id ? 'selected' : '' }}>
+                                {{ $user->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="mx-2 px-4 py-2.5 mt-1.5 text-white bg-blue-500 rounded ">{{ __('Filter') }}</button>
+                </div>
+            </form>
         </div>
+
     </x-slot>
 
     <section class="container px-4 mx-auto">
