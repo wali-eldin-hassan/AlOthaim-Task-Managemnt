@@ -1,9 +1,6 @@
 # GitHub Action for Laravel with MySQL and Redis
 name: Testing Laravel with MySQL 8.0, check code style and check types
-on:
-  pull_request:
-    branches:
-      - main 
+on: [push]
 jobs:
   laravel:
     name: Laravel (PHP ${{ matrix.php-versions }})
