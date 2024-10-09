@@ -12,7 +12,7 @@ it('can get his notifications', function () {
     $task->user->notify(new TaskAssignedNotification($task));
 
     $this->actingAs($user)
-        ->get('/')
+        ->get('/dashboard')
         ->assertOk()
         ->assertViewHas('notifications');
 
