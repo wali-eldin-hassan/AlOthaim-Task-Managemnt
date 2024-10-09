@@ -74,7 +74,7 @@ it('can view task', function () {
         });
 });
 
-it('can show only task that assigned to them', function () {
+it('admin can show all tasks', function () {
 
     $this->actingAs($this->admin);
 
@@ -82,12 +82,12 @@ it('can show only task that assigned to them', function () {
 
     create(Task::class, ['assigned_to' => $otherUser->id]);
 
-    $this->task = create(Task::class, ['assigned_to' => $this->admin->id], 3);
+    create(Task::class, ['assigned_to' => $this->admin->id], 3);
 
     $this->get('/tasks')
         ->assertOk()
         ->assertViewHas('tasks', function ($tasks) {
-            return $tasks->count() === 3;
+            return $tasks->count() === 4;
         });
 });
 //todo:make this work also check the auth
