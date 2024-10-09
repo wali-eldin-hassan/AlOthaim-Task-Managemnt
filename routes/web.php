@@ -35,7 +35,8 @@ Route::middleware('guest')->group(function () {
 });
 
 //  auth routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::resource('tasks', TaskController::class);
     Route::get('/', DashBoardController::class)->name('dashboard');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
