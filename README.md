@@ -98,10 +98,6 @@ You need to configure the `.env` file to match your local setup.
 
 - **Database Settings**:
   - `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
-- **Mail Settings**:
-  - `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`
-- **Queue/Cache Settings**:
-  - `CACHE_DRIVER=redis` and `QUEUE_CONNECTION=redis` (if using Redis)
 
 ## Running the Application
 
