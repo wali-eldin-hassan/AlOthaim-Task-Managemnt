@@ -28,9 +28,7 @@ class TaskController extends Controller
             return $query->where('assigned_to', $request->assigned_user);
         });
 
-        $tasks = auth()->user()->hasRole('user')
-            ? $tasks->latest()->get()
-            : $tasks->latest()->paginate(10);
+        $tasks = $tasks->latest()->paginate(10);
 
         return view('tasks.index', ['tasks' => $tasks, 'users' => User::all()]);
     }
