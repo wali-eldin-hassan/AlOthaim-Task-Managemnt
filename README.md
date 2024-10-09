@@ -241,13 +241,3 @@ This project offers several Routes endpoints for task and Auth management.
 
 - `GET /dashboard` - View the main dashboard where users can see an overview of their tasks, notifications, and general statistics
 
-## Contributing
-
-If you wish to contribute to this project, please submit a pull request. Ensure all new code is thoroughly tested.
-
-## License
-
-This project is open-source and licensed under the [MIT License](LICENSE).
-```
-
-This complete version is in Markdown format and includes all the instructions for installation, configuration, features, routes, and additional details as discussed.
