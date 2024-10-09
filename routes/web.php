@@ -27,8 +27,8 @@ Route::get('language/{language}', function ($language) {
 
 // guest routes
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [LoginController::class, 'login']);
-    Route::get('/register', [RegisterController::class, 'register']);
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
 });
 
 //  auth routes
