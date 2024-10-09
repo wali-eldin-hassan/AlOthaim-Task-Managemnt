@@ -50,8 +50,6 @@
                 {{ __('Login') }}
             </button>
 
-            <p class="mt-4 text-center text-gray-600 dark:text-gray-400">{{ __('or sign in with') }}</p>
-
             <p class="mt-6 text-sm text-center text-gray-400 dark:text-gray-300">
                 {{ __('Don\'t have an account?') }} <a href="{{route('register')}}"
                                                        class="text-indigo-500 dark:text-indigo-400 focus:outline-none focus:underline hover:underline">{{ __('Register') }}</a>.

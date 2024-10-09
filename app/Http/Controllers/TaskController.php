@@ -64,7 +64,11 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('tasks.edit', ['task' => $task]);
+        return view('tasks.edit', [
+            'task' => $task,
+            'selectedUserId' => $task->assigned_to,
+            'selectedStatus' => $task->status,
+        ]);
     }
 
     /**

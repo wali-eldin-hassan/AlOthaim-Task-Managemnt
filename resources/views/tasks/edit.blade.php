@@ -40,7 +40,9 @@
                     <select name="assigned_to"
                             class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                         @foreach(User::all() as $user)
-                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            <option value="{{$user->id}}" {{ old('assigned_to', $selectedUserId ?? '') == $user->id ? 'selected' : '' }}>
+                                {{$user->name}}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -55,7 +57,10 @@
                     <select name="status"
                             class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                         @foreach (TaskStatus::cases() as $taskStatus)
-                            <option value="{{$taskStatus}}">{{$taskStatus}}</option>
+                            <option value="{{ $taskStatus->value }}"
+                                    {{ old('status', $selectedStatus ?? '') == $taskStatus ? 'selected' : '' }}>
+                                {{  $taskStatus->name }}
+                            </option>
                         @endforeach
 
                     </select>
