@@ -1,5 +1,6 @@
 <x-guest-layout>
-    <form class="w-full max-w-md" action="{{route('register')}}" method="post">
+    <form class="w-full max-w-md" action="{{route('register.store')}}" method="post">
+        @csrf
         <img class="w-auto h-8 sm:h-9" src="/images/logo.svg" alt="">
 
         <h1 class="mt-4 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white">{{ __('Welcome') }}</h1>
