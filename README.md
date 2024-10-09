@@ -212,3 +212,7 @@ This project offers several Routes endpoints for task and Auth management.
 ### Notification Management (Web Routes)
 
 - `POST /notifications/read-all` - Mark all notifications as read
+
+### Dashboard Management (Web Routes)
+
+- `GET /dashboard` - View the main dashboard where users can see an overview of their tasks, notifications, and general statistics
