@@ -15,9 +15,30 @@
             </a>
         </div>
         </div>
+        <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 justify-center">
+            <a href="{{ route('tasks.index')}}"
+               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == '' ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none">
+                <span class="mx-1 text-sm sm:text-base">{{__('All')}}</span>
+            </a>
+            <a href="{{ route('tasks.index', ['status' => TaskStatus::Pending]) }}"
+               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::Pending->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:border-blue-400 dark:text-blue-300 whitespace-nowrap focus:outline-none">
+                <span class="mx-1 text-sm sm:text-base">{{__('Pending')}}</span>
+            </a>
+
+            <a href="{{ route('tasks.index', ['status' => TaskStatus::InProgress]) }}"
+               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::InProgress->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:text-white whitespace-nowrap focus:outline-none">
+                <span class="mx-1 text-sm sm:text-base">{{__('In Progress')}}</span>
+            </a>
+
+            <a href="{{ route('tasks.index', ['status' => TaskStatus::Completed]) }}"
+               class="inline-flex items-center h-10 px-4 py-2 text-center text-gray-700 bg-transparent border-b-2 {{ request('status') == TaskStatus::Completed->value ? 'border-blue-500' : 'border-transparent' }} sm:px-4 dark:text-white whitespace-nowrap focus:outline-none">
+                <span class="mx-1 text-sm sm:text-base">{{__('Completed')}}</span>
+            </a>
+        </div>
     </x-slot>
 
     <section class="container px-4 mx-auto">
+
         <div class="flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

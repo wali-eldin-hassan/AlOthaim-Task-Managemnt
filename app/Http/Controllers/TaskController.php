@@ -21,12 +21,16 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $tasks = auth()->user()->hasRole('user')
-            ? auth()->user()->tasks()->latest()->get()
-            : Task::latest()->paginate(10);
+            ? auth()->user()->tasks()
+            : Task::query();
 
-        //        $tasks->when($request->status, function ($query) use ($request) {
-        //            $query->where('status', $request->status);
-        //        });
+        $tasks->when($request->status, function ($query) use ($request) {
+            $query->where('status', $request->status);
+        });
+
+        $tasks = auth()->user()->hasRole('user')
+            ? $tasks->latest()->get()
+            : $tasks->latest()->paginate(10);
 
         return view('tasks.index', ['tasks' => $tasks]);
     }
