@@ -20,7 +20,10 @@
             <x-header />
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto">
+                @include('components.flash-message')
+
                 <div class="px-4 py-6 sm:py-8 sm:px-6">
+
                     {{ $header }}
 
                     <div class="mt-4 2xl:mt-6">
