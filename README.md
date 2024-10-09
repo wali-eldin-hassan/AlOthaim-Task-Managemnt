@@ -189,7 +189,6 @@ Alternatively, users can select their preferred language within the app’s sett
 The Task Management System implements **Role-Based Access Control (RBAC)**, with roles such as `Admin`, `Manager`, and `User`.
 
 - **Admin**: Has full access to all tasks and user management features.
-- **Manager**: Can manage tasks and assign them to users.
 - **User**: Can view and manage their own tasks but cannot see tasks assigned to others.
 
 ### Special Note:
