@@ -19,13 +19,13 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $tasks = auth()->user()->tasks();
+        //        $tasks = auth()->user()->tasks();
+        //
+        //        $tasks->when($request->status, function ($query) use ($request) {
+        //            $query->where('status', $request->status);
+        //        });
 
-        $tasks->when($request->status, function ($query) use ($request) {
-            $query->where('status', $request->status);
-        });
-
-        return view('tasks.index', ['tasks' => $tasks->get()]);
+        return view('tasks.index', ['tasks' => Task::all()]);
     }
 
     /**
@@ -35,7 +35,8 @@ class TaskController extends Controller
     {
         Task::create($request->validated());
 
-        return back();
+        return redirect()->route('tasks.index')->with('success', __('task created successfully'));
+
     }
 
     /**
@@ -69,7 +70,7 @@ class TaskController extends Controller
     {
         $task->update($request->validated());
 
-        return back();
+        return back()->with('success', __('task updated successfully'));
     }
 
     /**
@@ -79,6 +80,6 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return back();
+        return back()->with('success', __('task deleted successfully'));
     }
 }
