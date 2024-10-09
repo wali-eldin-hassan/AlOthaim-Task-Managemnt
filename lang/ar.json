@@ -75,5 +75,10 @@
   "Users Total": "عدد المستخدمين الكلي",
   "Edit": "تعديل",
   "Success": "نجاح",
-  "Error": "خطأ"
+  "Error": "خطأ",
+  "Edit Task": "تعديل بيانات المهمة",
+  "Show Task": "عرض بيانات المهمة",
+  "No new notifications": "لا يوجد اشعارات جديدة",
+  "Mark all as read": "جعل الجميع كمقروء",
+  "notifications": "الاشعارات"
 }

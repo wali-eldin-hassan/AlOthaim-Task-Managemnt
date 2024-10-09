@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Notifications\TaskAssignedNotification;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -19,9 +20,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $tasks = auth()->user()->hasRole('user') ?
-            auth()->user()->tasks()->latest()->get() :
-            Task::latest()->paginate(10);
+        $tasks = auth()->user()->hasRole('user')
+            ? auth()->user()->tasks()->latest()->get()
+            : Task::latest()->paginate(10);
 
         //        $tasks->when($request->status, function ($query) use ($request) {
         //            $query->where('status', $request->status);
@@ -35,10 +36,11 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        Task::create($request->validated());
+        $task = Task::create($request->validated());
+
+        $task->user->notify(new TaskAssignedNotification($task));
 
         return redirect()->route('tasks.index')->with('success', __('task created successfully'));
-
     }
 
     /**

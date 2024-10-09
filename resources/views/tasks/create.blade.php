@@ -33,7 +33,7 @@
                 @enderror
 
                 <div>
-                    <x-input-label for="users" :value="__('user')"/>
+                    <x-input-label for="users" :value="__('assigned to')"/>
 
                     <select name="assigned_to">
                         @foreach(User::all() as $user)
