@@ -35,8 +35,7 @@
                 <div>
                     <x-input-label for="users" :value="__('user')"/>
 
-                    <select name="assigned_to"
-                            class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                    <select name="assigned_to">
                         @foreach(User::all() as $user)
                             <option value="{{$user->id}}">{{$user->name}}</option>
                         @endforeach
@@ -50,8 +49,7 @@
                 <div>
                     <x-input-label for="status" :value="__('status')"/>
 
-                    <select name="status"
-                            class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                    <select name="status">
                         @foreach (TaskStatus::cases() as $taskStatus)
                             <option value="{{$taskStatus}}">{{$taskStatus}}</option>
                         @endforeach

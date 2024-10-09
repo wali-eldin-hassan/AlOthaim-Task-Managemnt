@@ -73,5 +73,7 @@
   "In Progress Tasks": "المهام قد الاجراء",
   "Completed Tasks": "المهام المكتملة",
   "Users Total": "عدد المستخدمين الكلي",
-  "Edit": "تعديل"
+  "Edit": "تعديل",
+  "Success": "نجاح",
+  "Error": "خطأ"
 }
