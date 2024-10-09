@@ -1,3 +1,4 @@
+@php use App\Enums\TaskStatus; @endphp
 <x-app-layout>
     <x-slot name="header">
         <div class="sm:flex sm:items-center sm:justify-between">
@@ -86,15 +87,11 @@
                                         {{$task->title}}
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                        <div class="inline-flex items-center px-3 py-1 text-gray-500 rounded-full gap-x-2 bg-gray-100/60 dark:bg-gray-800">
-                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.5 7L2 4.5M2 4.5L4.5 2M2 4.5H8C8.53043 4.5 9.03914 4.71071 9.41421 5.08579C9.78929 5.46086 10 5.96957 10 6.5V10"
-                                                      stroke="#667085" stroke-width="1.5" stroke-linecap="round"
-                                                      stroke-linejoin="round"/>
-                                            </svg>
-
-                                            <h2 class="text-sm font-normal">{{$task->status}}</h2>
+                                        <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2
+                                        {{ $task->status === TaskStatus::Pending ? 'bg-orange-100 text-orange-500' : '' }}
+                                        {{ $task->status === TaskStatus::InProgress ? 'bg-blue-100 text-blue-500' : '' }}
+                                        {{ $task->status === TaskStatus::Completed ? 'bg-green-100 text-green-500' : '' }}">
+                                            <h2 class="text-sm font-normal">{{ $task->status }}</h2>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -112,7 +109,7 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <div class="flex items-center gap-x-6">
-                                            <a href="{{route('tasks.edit'),}}"
+                                            <a href="{{route('tasks.edit',$task)}}"
                                                class="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                      stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -122,7 +119,7 @@
 
                                             </a>
 
-                                            <a href="{{route('tasks.show')}}"
+                                            <a href="{{route('tasks.show',$task)}}"
                                                class="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                      stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -133,14 +130,22 @@
                                                 </svg>
 
                                             </a>
-                                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="1.5" stroke="currentColor" class="size-5">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/>
-                                                </svg>
+                                            <form action="{{ route('tasks.destroy', $task) }}" method="POST"
+                                                  onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                @csrf
+                                                @method('DELETE')
 
-                                            </button>
+                                                <button type="submit"
+                                                        class="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         class="size-5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"/>
+                                                    </svg>
+                                                </button>
+                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>

@@ -65,5 +65,8 @@
   "previous": "السابق",
   "Next": "التالي",
   "Create": "انشاء",
-  "Create Task": "انشاء مهمة"
+  "Create Task": "انشاء مهمة",
+  "task deleted successfully": "تم حذف المهمة بنجاح",
+  "task created successfully": "تم انشاء المهمة بنجاح",
+  "task updated successfully": "تم تحديث المهمة بنجاح"
 }
