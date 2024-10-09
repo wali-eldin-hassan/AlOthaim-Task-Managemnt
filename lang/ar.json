@@ -80,5 +80,12 @@
   "Show Task": "عرض بيانات المهمة",
   "No new notifications": "لا يوجد اشعارات جديدة",
   "Mark all as read": "جعل الجميع كمقروء",
-  "notifications": "الاشعارات"
+  "notifications": "الاشعارات",
+  "All": "الكل",
+  "Pending": "في الإنتظار",
+  "In Progress": "جاري العمل",
+  "Completed": "مكتمل",
+  "Assigned User": "مسندة الي ",
+  "All Users": "كل المستخدمين",
+  "Filter": "بحث"
 }
