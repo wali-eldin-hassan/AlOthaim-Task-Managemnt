@@ -21,7 +21,7 @@ class TaskController extends Controller
     {
         $tasks = auth()->user()->hasRole('user') ?
             auth()->user()->tasks()->latest()->get() :
-            Task::latest()->get();
+            Task::latest()->paginate(10);
 
         //        $tasks->when($request->status, function ($query) use ($request) {
         //            $query->where('status', $request->status);
