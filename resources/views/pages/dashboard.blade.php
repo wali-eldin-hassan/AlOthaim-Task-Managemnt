@@ -117,7 +117,7 @@
     <section class="mt-6">
         <x-section class="w-full">
             <h1 class="text-lg font-medium text-gray-700 capitalize sm:flex sm:items-center sm:gap-x-2 dark:text-gray-300 sm:text-xl">
-                <span>active users </span>
+                <span>{{ __('Completed Tasks') }}</span>
 
                 <p class="flex items-center mt-1 text-sm sm:mt-0 gap-x-1 text-emerald-500 dark:text-emerald-400">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -126,17 +126,48 @@
                               d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
                     </svg>
 
-                    <span class="font-normal ">10% <span>from yesterday</span> </span>
+                    <span class="font-normal ">
+                    {{ $percentageChange }}% <span>{{ __('from yesterday') }}</span>
+                </span>
                 </p>
             </h1>
 
-            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">online users on the website for the last 16
-                hours</p>
+            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                {{ __('Completed tasks for the last 7 days') }}
+            </p>
 
             <div class="mt-4 rounded-lg bg-gradient-to-r from-indigo-800 to-gray-900">
-                <canvas id="barChart" height="80"></canvas>
+                <canvas id="completedTasksChart" height="80"></canvas>
             </div>
         </x-section>
     </section>
 
+
 </x-app-layout>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('completedTasksChart').getContext('2d');
+    const completedTasksData = @json(array_values($completedTasksPerDay->toArray()));
+    const completedTasksLabels = @json(array_keys($completedTasksPerDay->toArray()));
+
+    const completedTasksChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: completedTasksLabels,
+            datasets: [{
+                label: '{{ __("Completed Tasks") }}',
+                data: completedTasksData,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
