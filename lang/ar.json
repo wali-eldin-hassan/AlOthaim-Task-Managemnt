@@ -87,5 +87,7 @@
   "Completed": "مكتمل",
   "Assigned User": "مسندة الي ",
   "All Users": "كل المستخدمين",
-  "Filter": "بحث"
+  "Filter": "بحث",
+  "Completed tasks for the last 7 days": "المهام المكتمله في اخر 7  ايام",
+  "from yesterday": "منذ الامس"
 }
