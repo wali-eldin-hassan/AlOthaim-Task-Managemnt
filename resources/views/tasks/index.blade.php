@@ -28,8 +28,7 @@
                                 <th scope="col"
                                     class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <div class="flex items-center gap-x-3">
-                                        <input type="checkbox"
-                                               class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700">
+
                                         <button class="flex items-center gap-x-2">
                                             <span>{{__('#')}}</span>
 
@@ -77,9 +76,6 @@
                                 <tr>
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
                                         <div class="inline-flex items-center gap-x-3">
-                                            <input type="checkbox"
-                                                   class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700">
-
                                             <span>{{$task->id}}</span>
                                         </div>
                                     </td>
