@@ -150,24 +150,28 @@ Ensure you have a dedicated test database configured in your `.env` file for tes
 
 This project offers several API endpoints for task and user management.
 
-### Task Management
+### Task Management (Web Routes)
 
-- `GET /api/tasks` - Fetch all tasks
-- `POST /api/tasks` - Create a new task
-- `GET /api/tasks/{task}` - Retrieve a single task by ID
-- `PUT /api/tasks/{task}` - Update a task
-- `DELETE /api/tasks/{task}` - Delete a task
+- `GET /tasks` - Fetch all tasks (Task list view)
+- `GET /tasks/create` - View the form to create a new task
+- `POST /tasks` - Create a new task
+- `GET /tasks/{task}` - View a single task by ID (Task details view)
+- `GET /tasks/{task}/edit` - View the form to edit a task
+- `PUT /tasks/{task}` - Update a task
+- `DELETE /tasks/{task}` - Delete a task
 
-### User Management
+### User Management (Web Routes)
 
-- `GET /api/users` - Fetch all users
-- `POST /api/users` - Create a new user
-- `GET /api/users/{user}` - Retrieve a user by ID
-- `PUT /api/users/{user}` - Update user details
-- `DELETE /api/users/{user}` - Delete a user
+- `GET /users` - Fetch all users (User list view)
+- `GET /users/create` - View the form to create a new user
+- `POST /users` - Create a new user
+- `GET /users/{user}` - View a single user by ID (User details view)
+- `GET /users/{user}/edit` - View the form to edit a user
+- `PUT /users/{user}` - Update user details
+- `DELETE /users/{user}` - Delete a user
 
-### Notification Management
+### Notification Management (Web Routes)
 
-- `GET /api/notifications` - Fetch all notifications for the logged-in user
-- `POST /api/notifications/read` - Mark a notification as read
-- `POST /api/notifications/read-all` - Mark all notifications as read
+- `GET /notifications` - Fetch all unread notifications for the logged-in user
+- `POST /notifications/{notification}/read` - Mark a specific notification as read
+- `POST /notifications/read-all` - Mark all notifications as read
