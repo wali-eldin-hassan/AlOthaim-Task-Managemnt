@@ -1,6 +1,7 @@
 # Task Management System
 
-Welcome to the **Task Management System** repository. This is a Laravel-based application designed to manage tasks, user assignments, notifications, and more.
+Welcome to the **Task Management System** repository. This is a Laravel-based application designed to manage tasks, user
+assignments, notifications, and more.
 
 ## Table of Contents
 
@@ -9,7 +10,9 @@ Welcome to the **Task Management System** repository. This is a Laravel-based ap
 - [Running the Application](#running-the-application)
 - [Testing](#testing)
 - [Features](#features)
-- [API Endpoints](#api-endpoints)
+- [Dark and Light Mode](#Dark and Light Mode)
+- [Language Support (Arabic and English)](#Language Support (Arabic and English))
+- [Contributing](#contributing)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -69,7 +72,8 @@ php artisan key:generate
 
 ### Step 5: Set Up the Database
 
-Ensure that your database is running, and run the following commands to create the database tables and seed some initial data:
+Ensure that your database is running, and run the following commands to create the database tables and seed some initial
+data:
 
 ```bash
 php artisan migrate --seed
@@ -90,6 +94,7 @@ Visit `http://localhost:8000` in your browser to view the application.
 You need to configure the `.env` file to match your local setup.
 
 ### Key Configurations:
+
 - **Database Settings**:
     - `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
 - **Mail Settings**:
@@ -99,7 +104,8 @@ You need to configure the `.env` file to match your local setup.
 
 ## Running the Application
 
-Once installed, you can run the application as you would with any Laravel application. To watch and build frontend assets in development mode, use the following:
+Once installed, you can run the application as you would with any Laravel application. To watch and build frontend
+assets in development mode, use the following:
 
 ```bash
 npm run dev
@@ -142,13 +148,48 @@ Ensure you have a dedicated test database configured in your `.env` file for tes
 - **Task Management**: Create, update, delete, and manage tasks.
 - **User Assignments**: Assign tasks to different users.
 - **Notifications**: Users receive notifications when tasks are assigned, updated, or completed.
-- **Role-Based Access Control**: Roles and permissions (e.g., Admin, Manager, User) to control access to different features.
+- **Role-Based Access Control**: Roles and permissions (e.g., Admin, Manager, User) to control access to different
+  features.
 - **Task Status Management**: Users can manage and update the status of tasks (e.g., pending, in-progress, completed).
 - **Notifications**: Users can mark their notifications as read.
+## Dark and Light Mode
 
-## API Endpoints
+This project supports **Dark Mode** and **Light Mode** out of the box. Users can switch between dark and light themes, and the UI adapts automatically based on the user's preferences.
 
-This project offers several API endpoints for task and user management.
+- **Light Mode**: Default white background with dark text.
+- **Dark Mode**: Dark background with light text, providing a user-friendly experience in low-light environments.
+
+### Example of Switching Themes:
+
+You can toggle between light and dark modes in your app settings or user preferences. The UI will adjust accordingly for better user experience.
+
+## Language Support (Arabic and English)
+
+This project comes with **multi-language support** for both Arabic (`ar`) and English (`en`) right out of the box. It allows users to switch between languages, and the application UI adapts seamlessly.
+
+- **English**: Default language.
+- **Arabic**: Fully RTL (right-to-left) support for Arabic speakers.
+
+### How to Switch Languages:
+
+To switch between languages, you can use a language selector in the UI or set the default language in your `.env` file:
+
+```bash
+APP_LOCALE=en
+````
+
+```bash
+APP_LOCALE=en
+````
+
+For Arabic, update the .env file:
+```bash
+APP_LOCALE=ar
+```
+Alternatively, users can select their preferred language within the app’s settings.
+## Routes Endpoints
+
+This project offers several Routes endpoints for task and Auth management.
 
 ### Task Management (Web Routes)
 
@@ -160,18 +201,14 @@ This project offers several API endpoints for task and user management.
 - `PUT /tasks/{task}` - Update a task
 - `DELETE /tasks/{task}` - Delete a task
 
-### User Management (Web Routes)
+### Auth Management (Web Routes)
 
-- `GET /users` - Fetch all users (User list view)
-- `GET /users/create` - View the form to create a new user
-- `POST /users` - Create a new user
-- `GET /users/{user}` - View a single user by ID (User details view)
-- `GET /users/{user}/edit` - View the form to edit a user
-- `PUT /users/{user}` - Update user details
-- `DELETE /users/{user}` - Delete a user
+- `GET /login` - Show the login form
+- `POST /login` - Process login credentials and authenticate the user
+- `GET /register` - Show the registration form for new users
+- `POST /register` - Register a new user
+- `POST /logout` - Log out the authenticated user
 
 ### Notification Management (Web Routes)
 
-- `GET /notifications` - Fetch all unread notifications for the logged-in user
-- `POST /notifications/{notification}/read` - Mark a specific notification as read
 - `POST /notifications/read-all` - Mark all notifications as read
