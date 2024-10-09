@@ -28,11 +28,14 @@ Route::get('language/{language}', function ($language) {
 // guest routes
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 });
 
 //  auth routes
 Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
-    Route::get('/', DashBoardController::class);
+    Route::get('/', DashBoardController::class)->name('dashboard');
 });
