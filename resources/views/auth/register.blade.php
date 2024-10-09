@@ -19,6 +19,12 @@
                    placeholder="{{ __('Username') }}">
         </div>
 
+        @error('name')
+        <div class="text-red-500 mt-2 text-sm">
+            {{ $message }}
+        </div>
+        @enderror
+
         <div class="relative flex items-center mt-4">
             <span class="absolute mx-3 text-gray-300 dark:text-gray-500">
                 <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -32,6 +38,12 @@
                    class="block w-full py-3 text-gray-700 bg-white border border-gray-200 rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-indigo-400 dark:focus:border-indigo-300 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
                    placeholder="{{ __('Email address') }}">
         </div>
+
+        @error('email')
+        <div class="text-red-500 mt-2 text-sm">
+            {{ $message }}
+        </div>
+        @enderror
 
         <div class="relative flex items-center mt-4">
             <span class="absolute mx-3 text-gray-300 dark:text-gray-500">
@@ -47,6 +59,12 @@
                    placeholder="{{ __('Password') }}">
         </div>
 
+        @error('password')
+        <div class="text-red-500 mt-2 text-sm">
+            {{ $message }}
+        </div>
+        @enderror
+
         <div class="relative flex items-center mt-4">
             <span class="absolute mx-3 text-gray-300 dark:text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -56,10 +74,16 @@
                 </svg>
             </span>
 
-            <input type="password" name="confirm-password"
+            <input type="password" name="password_confirmation"
                    class="block w-full px-10 py-3 text-gray-700 bg-white border border-gray-200 rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-indigo-400 dark:focus:border-indigo-300 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
                    placeholder="{{ __('Confirm Password') }}">
         </div>
+
+        @error('confirm_password')
+        <div class="text-red-500 mt-2 text-sm">
+            {{ $message }}
+        </div>
+        @enderror
 
         <div class="mt-6">
             <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-500 rounded-lg hover:bg-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
