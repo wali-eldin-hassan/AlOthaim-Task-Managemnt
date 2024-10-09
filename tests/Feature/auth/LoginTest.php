@@ -6,8 +6,8 @@ use App\Providers\RouteServiceProvider;
 it('can login to our portal', function () {
     create(User::class, ['email' => 'test@example.com', 'password' => 'password']);
 
-    $this->post(route('login'), ['email' => 'test@example.com', 'password' => 'password'])
-        ->assertRedirect(RouteServiceProvider::HOME);
+    $this->post(route('login.store'), ['email' => 'test@example.com', 'password' => 'password'])
+        ->assertRedirect('/');
 });
 
 it('can not login if his data is not valid', function () {
@@ -41,5 +41,5 @@ it('can logout successfully', function () {
 
     $this->actingAs($user)
         ->post(route('logout'))
-        ->assertRedirect('/login');
+        ->assertRedirect('/');
 });
