@@ -18,6 +18,7 @@ class DashBoardController extends Controller
             ->pluck('count', 'date');
 
         $todayCount = $completedTasksPerDay->get(now()->format('Y-m-d'), 0);
+
         $yesterdayCount = $completedTasksPerDay->get(now()->yesterday()->format('Y-m-d'), 0);
 
         $percentageChange = $yesterdayCount ? (($todayCount - $yesterdayCount) / $yesterdayCount) * 100 : 0;
