@@ -1,4 +1,4 @@
-@php use App\Enums\TaskStatus;use App\Models\User; @endphp
+@php use App\Enums\TaskStatus;use App\Models\Task;use App\Models\User; @endphp
 <x-app-layout>
     <x-slot name="header">
         <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __('Dashboard') }}</h1>
@@ -10,8 +10,11 @@
                 <p class="text-sm text-gray-500 dark:text-gray-300">{{__('Pending Task')}}</p>
 
                 <div class="flex items-center mt-1">
-                    <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{auth()->user()->tasks()->where('status',TaskStatus::Pending->value)->count()}}</h2>
-
+                    @if( auth()->user()->hasRole('user'))
+                        <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{auth()->user()->tasks()->where('status',TaskStatus::Pending->value)->count()}}</h2>
+                    @else
+                        <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{Task::where('status',TaskStatus::Pending->value)->count()}}</h2>
+                    @endif
                     <p class="flex items-center mx-2 2xl:mx-6 gap-x-1 text-emerald-500 dark:text-emerald-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
@@ -24,8 +27,10 @@
             </div>
 
             <div class="p-2 rounded-lg text-orange-500 bg-orange-100/60 dark:bg-emerald-700/30 dark:text-emerald-400">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                 </svg>
 
             </div>
@@ -36,8 +41,11 @@
                 <p class="text-sm text-gray-500 dark:text-gray-300">{{__('In Progress Tasks')}}</p>
 
                 <div class="flex items-center mt-1">
-                    <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{auth()->user()->tasks()->where('status',TaskStatus::InProgress->value)->count()}}</h2>
-
+                    @if( auth()->user()->hasRole('user'))
+                        <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{auth()->user()->tasks()->where('status',TaskStatus::InProgress->value)->count()}}</h2>
+                    @else
+                        <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{Task::where('status',TaskStatus::InProgress->value)->count()}}</h2>
+                    @endif
                     <p class="flex items-center mx-2 2xl:mx-6 gap-x-1 text-emerald-500 dark:text-emerald-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
@@ -50,8 +58,10 @@
             </div>
 
             <div class="p-2 rounded-lg text-sky-500 bg-sky-100/60 dark:bg-sky-700/30 dark:text-sky-400">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/>
                 </svg>
 
             </div>
@@ -62,8 +72,11 @@
                 <p class="text-sm text-gray-500 dark:text-gray-300">{{__('Completed Tasks')}}</p>
 
                 <div class="flex items-center mt-1">
-                    <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{auth()->user()->tasks()->where('status',TaskStatus::Completed->value)->count()}}</h2>
-
+                    @if( auth()->user()->hasRole('user'))
+                        <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{auth()->user()->tasks()->where('status',TaskStatus::Completed->value)->count()}}</h2>
+                    @else
+                        <h2 class="text-xl font-medium text-gray-800 dark:text-white">{{Task::where('status',TaskStatus::Completed->value)->count()}}</h2>
+                    @endif
                     <p class="flex items-center mx-2 text-red-500 2xl:mx-6 gap-x-1 dark:text-red-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
@@ -76,8 +89,10 @@
             </div>
 
             <div class="p-2 text-green-500 rounded-lg bg-green-100/60 dark:bg-indigo-700/30 dark:text-indigo-400">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                 </svg>
 
             </div>
@@ -128,7 +143,7 @@
 
                     {{ round($percentageChange, 2) }}%
                     <span>{{ __('from yesterday') }}</span>
-                </span>
+                    </span>
                 </p>
             </h1>
 
