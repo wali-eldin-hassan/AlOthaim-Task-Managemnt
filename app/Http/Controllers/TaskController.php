@@ -20,8 +20,8 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $tasks = auth()->user()->hasRole('user') ?
-            auth()->user()->tasks() :
-            Task::all();
+            auth()->user()->tasks()->latest()->get() :
+            Task::latest()->get();
 
         //        $tasks->when($request->status, function ($query) use ($request) {
         //            $query->where('status', $request->status);
@@ -72,7 +72,7 @@ class TaskController extends Controller
     {
         $task->update($request->validated());
 
-        return back()->with('success', __('task updated successfully'));
+        return redirect()->route('tasks.index')->with('success', __('task updated successfully'));
     }
 
     /**
