@@ -68,5 +68,9 @@
   "Create Task": "انشاء مهمة",
   "task deleted successfully": "تم حذف المهمة بنجاح",
   "task created successfully": "تم انشاء المهمة بنجاح",
-  "task updated successfully": "تم تحديث المهمة بنجاح"
+  "task updated successfully": "تم تحديث المهمة بنجاح",
+  "Pending Task": "المهام في الانتظار",
+  "In Progress Tasks": "المهام قد الاجراء",
+  "Completed Tasks": "المهام المكتملة",
+  "Users Total": "عدد المستخدمين الكلي"
 }
