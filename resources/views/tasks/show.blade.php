@@ -8,44 +8,34 @@
 
         <div class="grid gap-6 md:grid-cols-1">
             <div>
-                <x-input-label for="title" :value="__('title')" readonly/>
+                <x-input-label for="title" :value="__('title')"/>
 
-                <input placeholder="Arthur Melo" type="text"
+                <input type="text" value="{{$task->title}}" readonly
                        class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"/>
-                <p class="mt-2 text-sm text-gray-500">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
             </div>
             <div>
-                <x-input-label for="description" :value="__('description')" readonly/>
-                <textarea
-                        class="block w-full h-32 px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"></textarea>
+                <x-input-label for="description" :value="__('description')"/>
+                <textarea readonly
+                          class="block w-full h-32 px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">{{$task->description}}</textarea>
             </div>
 
             <div>
-                <x-input-label for="users" :value="__('user')" readonly/>
+                <div>
+                    <x-input-label for="user" :value="__('user')"/>
 
-                <select
-                        class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                    <option>Jane Doe</option>
-                    <option>John Doe</option>
-                    <option>Pamela Anderson</option>
-                    <option>Arthur Melo</option>
-                    <option>Olivia Wathan</option>
-                    <option>Joseph Gonzalez</option>
-                </select>
+                    <input type="text" value="{{$task->user->name}}" readonly
+                           class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"/>
+                </div>
             </div>
             <div>
-                <x-input-label for="status" :value="__('status')" readonly/>
+                <div>
+                    <x-input-label for="status" :value="__('status')"/>
 
-                <select
-                        class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                    <option>Jane Doe</option>
-                    <option>John Doe</option>
-                    <option>Pamela Anderson</option>
-                    <option>Arthur Melo</option>
-                    <option>Olivia Wathan</option>
-                    <option>Joseph Gonzalez</option>
-                </select>
+                    <input type="text" value="{{$task->status}}" readonly
+                           class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"/>
+                </div>
             </div>
+        </div>
         </div>
     </x-section>
 </x-app-layout>
