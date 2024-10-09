@@ -10,7 +10,6 @@ enum TaskStatus: string
 
     public function label(): string
     {
-        return trans('statuses.' . $this->value);
+        return trans('statuses.'.$this->value);
     }
-
 }
