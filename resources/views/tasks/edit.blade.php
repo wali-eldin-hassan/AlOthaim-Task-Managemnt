@@ -59,7 +59,7 @@
                         @foreach (TaskStatus::cases() as $taskStatus)
                             <option value="{{ $taskStatus->value }}"
                                     {{ old('status', $selectedStatus ?? '') == $taskStatus ? 'selected' : '' }}>
-                                {{  $taskStatus->name }}
+                                {{  $taskStatus->label() }}
                             </option>
                         @endforeach
 

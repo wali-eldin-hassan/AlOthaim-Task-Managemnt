@@ -128,7 +128,7 @@
                                         {{ $task->status === TaskStatus::Pending ? 'bg-orange-100 text-orange-500' : '' }}
                                         {{ $task->status === TaskStatus::InProgress ? 'bg-blue-100 text-blue-500' : '' }}
                                         {{ $task->status === TaskStatus::Completed ? 'bg-green-100 text-green-500' : '' }}">
-                                            <h2 class="text-sm font-normal">{{ $task->status }}</h2>
+                                            <h2 class="text-sm font-normal">{{ $task->status->label() }}</h2>
                                         </div>
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">

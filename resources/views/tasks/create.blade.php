@@ -1,7 +1,7 @@
 @php use App\Enums\TaskStatus;use App\Models\User; @endphp
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __(' Edit Task') }}</h1>
+        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __('Create Task') }}</h1>
 
     </x-slot>
 
@@ -51,7 +51,7 @@
 
                     <select name="status">
                         @foreach (TaskStatus::cases() as $taskStatus)
-                            <option value="{{$taskStatus}}">{{$taskStatus}}</option>
+                            <option value="{{$taskStatus}}">{{$taskStatus->label()}}</option>
                         @endforeach
 
                     </select>
