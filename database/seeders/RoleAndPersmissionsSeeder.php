@@ -13,7 +13,6 @@ class RoleAndPersmissionsSeeder extends Seeder
      */
     public function run(): void
     {
-
         $roles = [
             'admin' => ['create-task', 'view-task', 'edit-task', 'delete-task'],
             'user' => ['view-task', 'edit-task'],

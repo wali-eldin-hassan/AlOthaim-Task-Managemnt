@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __(' Show Task') }}</h1>
+        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __('Show Task') }}</h1>
 
     </x-slot>
 
@@ -21,7 +21,7 @@
 
             <div>
                 <div>
-                    <x-input-label for="user" :value="__('user')"/>
+                    <x-input-label for="user" :value="__('assigned to')"/>
 
                     <input type="text" value="{{$task->user->name}}" readonly
                            class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"/>

@@ -1,43 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @import 'tailwindcss/base';
-@import "./custom-base-styles.css";
+@import './custom-base-styles.css';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 @layer base {
-    /* Default for LTR layouts */
-    select {
-        /* Your additional styles */
-        display: block;
-        width: 100%;
-        padding: 0.625rem 1rem; /* 2.5px */
-        margin-top: 0.5rem; /* mt-2 */
-        color: #4b5563; /* text-gray-600 */
-        background-color: white;
-        border: 1px solid #e5e7eb; /* border-gray-200 */
-        border-radius: 0.375rem; /* rounded-lg */
-        outline: none;
-        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  /* Default for LTR layouts */
+  select {
+    /* Your additional styles */
+    display: block;
+    width: 100%;
+    padding: 0.625rem 1rem; /* 2.5px */
+    margin-top: 0.5rem; /* mt-2 */
+    color: #4b5563; /* text-gray-600 */
+    background-color: white;
+    border: 1px solid #e5e7eb; /* border-gray-200 */
+    border-radius: 0.375rem; /* rounded-lg */
+    outline: none;
+    transition:
+      border-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
 
-        /* Focus state */
-        focus-visible {
-            border-color: #6366f1; /* focus:border-indigo-400 */
-            box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.4); /* focus:ring-indigo-300 */
-        }
-
-        /* Positioning for the arrow */
-        background-position: right 0.75rem center;
-        padding-right: 2.5rem; /* Leave space for the arrow */
-        background-repeat: no-repeat;
-        background-size: 1rem;
+    /* Focus state */
+    focus-visible {
+      border-color: #6366f1; /* focus:border-indigo-400 */
+      box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.4); /* focus:ring-indigo-300 */
     }
 
-    /* Adjust for RTL layouts */
-    :where([dir="rtl"]) select {
-        /* Reversing padding and background position */
-        background-position: left 0.75rem center;
-        padding-left: 2.5rem; /* Leave space for arrow on the left */
-        padding-right: 1rem; /* Standard padding on the right */
-    }
+    /* Positioning for the arrow */
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem; /* Leave space for the arrow */
+    background-repeat: no-repeat;
+    background-size: 1rem;
+  }
+
+  /* Adjust for RTL layouts */
+  :where([dir='rtl']) select {
+    /* Reversing padding and background position */
+    background-position: left 0.75rem center;
+    padding-left: 2.5rem; /* Leave space for arrow on the left */
+    padding-right: 1rem; /* Standard padding on the right */
+  }
 }

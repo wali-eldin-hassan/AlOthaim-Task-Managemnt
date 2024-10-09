@@ -1,7 +1,7 @@
 @php use App\Enums\TaskStatus;use App\Models\User; @endphp
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __(' Edit Task') }}</h1>
+        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-200 sm:text-2xl">{{ __('Edit Task') }}</h1>
 
     </x-slot>
 
@@ -35,7 +35,7 @@
                 @enderror
 
                 <div>
-                    <x-input-label for="users" :value="__('user')"/>
+                    <x-input-label for="users" :value="__('assigned to')"/>
 
                     <select name="assigned_to"
                             class="block w-full px-4 py-2.5 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
