@@ -1,3 +1,4 @@
+
 # Task Management System
 
 Welcome to the **Task Management System** repository. This is a Laravel-based application designed to manage tasks, user
@@ -12,7 +13,8 @@ assignments, notifications, and more.
 - [Features](#features)
 - [Dark and Light Mode](#dark-and-light-mode)
 - [Language Support (Arabic and English)](#language-support-arabic-and-english)
-- [Contributing](#contributing)
+- [User Roles and Permissions](#user-roles-and-permissions)
+- [Dashboard Chart Feature](#dashboard-chart-feature)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -35,7 +37,7 @@ Ensure you have the following installed:
 ```bash
 git clone https://github.com/yourusername/task-management-system.git
 cd task-management-system
-
+```
 
 ### Step 2: Install Dependencies
 
@@ -72,8 +74,7 @@ php artisan key:generate
 
 ### Step 5: Set Up the Database
 
-Ensure that your database is running, and run the following commands to create the database tables and seed some initial
-data:
+Ensure that your database is running, and run the following commands to create the database tables and seed some initial data:
 
 ```bash
 php artisan migrate --seed
@@ -96,11 +97,11 @@ You need to configure the `.env` file to match your local setup.
 ### Key Configurations:
 
 - **Database Settings**:
-    - `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
+  - `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
 - **Mail Settings**:
-    - `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`
+  - `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`
 - **Queue/Cache Settings**:
-    - `CACHE_DRIVER=redis` and `QUEUE_CONNECTION=redis` (if using Redis)
+  - `CACHE_DRIVER=redis` and `QUEUE_CONNECTION=redis` (if using Redis)
 
 ## Running the Application
 
@@ -152,6 +153,7 @@ Ensure you have a dedicated test database configured in your `.env` file for tes
   features.
 - **Task Status Management**: Users can manage and update the status of tasks (e.g., pending, in-progress, completed).
 - **Notifications**: Users can mark their notifications as read.
+
 ## Dark and Light Mode
 
 This project supports **Dark Mode** and **Light Mode** out of the box. Users can switch between dark and light themes, and the UI adapts automatically based on the user's preferences.
@@ -176,17 +178,43 @@ To switch between languages, you can use a language selector in the UI or set th
 
 ```bash
 APP_LOCALE=en
-````
+```
 
-```bash
-APP_LOCALE=en
-````
+For Arabic:
 
-For Arabic, update the .env file:
 ```bash
 APP_LOCALE=ar
 ```
+
 Alternatively, users can select their preferred language within the app’s settings.
+
+## User Roles and Permissions
+
+The Task Management System implements **Role-Based Access Control (RBAC)**, with roles such as `Admin`, `Manager`, and `User`.
+
+- **Admin**: Has full access to all tasks and user management features.
+- **Manager**: Can manage tasks and assign them to users.
+- **User**: Can view and manage their own tasks but cannot see tasks assigned to others.
+
+### Special Note:
+- **Admin Role**: Only the `admin` can view the total count of all users and tasks.
+- **User Role**: Regular users only see tasks assigned to them.
+
+### Example Login Credentials:
+- **Admin**:
+  - Email: `admin@example.com`
+  - Password: `password`
+- **User**:
+  - Email: `user@example.com`
+  - Password: `password`
+
+## Dashboard Chart Feature
+
+The dashboard includes a feature where users can see statistics related to completed tasks in the last seven days. The statistics are visually represented using a chart, giving users an overview of task completion trends.
+
+- **Chart Example**: Users can see the number of completed tasks per day, with a percentage change indicator to show how task completion compares to the previous day.
+- **Roles Impact**: Users will only see data related to their own tasks, while admins can see the overall task completion for all users.
+
 ## Routes Endpoints
 
 This project offers several Routes endpoints for task and Auth management.
@@ -216,3 +244,14 @@ This project offers several Routes endpoints for task and Auth management.
 ### Dashboard Management (Web Routes)
 
 - `GET /dashboard` - View the main dashboard where users can see an overview of their tasks, notifications, and general statistics
+
+## Contributing
+
+If you wish to contribute to this project, please submit a pull request. Ensure all new code is thoroughly tested.
+
+## License
+
+This project is open-source and licensed under the [MIT License](LICENSE).
+```
+
+This complete version is in Markdown format and includes all the instructions for installation, configuration, features, routes, and additional details as discussed.
