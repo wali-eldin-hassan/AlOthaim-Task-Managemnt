@@ -15,8 +15,7 @@ assignments, notifications, and more.
 - [Language Support (Arabic and English)](#language-support-arabic-and-english)
 - [User Roles and Permissions](#user-roles-and-permissions)
 - [Dashboard Chart Feature](#dashboard-chart-feature)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Installation
 
