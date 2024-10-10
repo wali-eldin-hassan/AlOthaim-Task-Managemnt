@@ -53,7 +53,7 @@ class TaskUpdatedNotification extends Notification
         return [
             'task_id' => $this->task->id,
             'task_title' => $this->task->title,
-            'message' => 'Your task has been updated',
+            'message' => __('Your task has been updated'),
         ];
     }
 }
