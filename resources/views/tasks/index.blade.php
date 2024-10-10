@@ -57,7 +57,7 @@
 
     </x-slot>
 
-    <section class="px-4 mx-auto">
+    <section class="container px-4 mx-auto">
 
         <div class="flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
